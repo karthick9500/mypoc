@@ -1,12 +1,11 @@
 pipeline {
 
+triggers {
+        cron('H/4 * * * 1-5')
+        pollSCM('0 0 * * 0')
+}
+
 agent any
-//agent {
-        //docker {
-        //    image 'node:6-alpine'
-        //    args '-p 3000:3000'
-        //}
-    //}
   
    parameters {
         string(name: 'Environemnt', defaultValue: 'dev', description: 'Enter the Environment name')
@@ -30,7 +29,6 @@ environment {
     }
     
     // Stage2
-    
     stage("Build"){
        steps
       {
@@ -38,34 +36,7 @@ environment {
       }
     }
     
-    //
     
-    
-    
-
-  }
+   }
         
-        
-        
-        
-  post {
-        failure {
-            script {
-                // CHANGE_ID is set only for pull requests, so it is safe to access the pullRequest global variable
-                if (env.CHANGE_ID) {
-                    pullRequest.addLabel('Build Failed')
-                }
-            }
-        }
-        success {
-            script {
-                // CHANGE_ID is set only for pull requests, so it is safe to access the pullRequest global variable
-                if (env.CHANGE_ID) {
-                    pullRequest.addLabel('Build Success')
-                }
-            }
-        }
-    }
-
-
 }
