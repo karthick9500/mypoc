@@ -1,17 +1,11 @@
 pipeline {
 
-
 triggers {
         cron('H/4 * * * 1-5')
         pollSCM('0 0 * * 0')
 }
 
-agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
+agent any
   
    parameters {
         string(name: 'Environemnt', defaultValue: 'dev', description: 'Enter the Environment name')
