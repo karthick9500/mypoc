@@ -29,7 +29,6 @@ environment {
     }
     
     // Stage2
-    
     stage("Build"){
        steps
       {
