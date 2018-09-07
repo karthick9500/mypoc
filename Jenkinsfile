@@ -1,11 +1,12 @@
 pipeline {
 
-agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
+agent any
+//agent {
+        //docker {
+        //    image 'node:6-alpine'
+        //    args '-p 3000:3000'
+        //}
+    //}
   
    parameters {
         string(name: 'Environemnt', defaultValue: 'dev', description: 'Enter the Environment name')
